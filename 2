@@ -1,0 +1,176 @@
+# generate_synergy_page.py
+
+html_content = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Университет «Синергия» — Информация об организации</title>
+    
+    <!-- Подключение основного шрифта (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Основной стиль страницы */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #25283d; /* Темно-синий оттенок, часто используемый в брендинге */
+            border-bottom: 3px solid #e03e3e; /* Акцентный красный цвет */
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #e03e3e;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            background: #f9f9f9;
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border-left: 4px solid #e03e3e;
+            border-radius: 4px;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #25283d;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* Блок с демонстрацией шрифтов (скрыт на печати, виден на экране) */
+        .font-demo {
+            margin-top: 50px;
+            padding: 20px;
+            background: #eef2ff;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+        }
+        
+        .font-sample {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Наименование организации, на базе которой проходит практическая подготовка</h1>
+        
+        <section>
+            <h2>Полное официальное название</h2>
+            <p>Автономная некоммерческая организация высшего образования «Московский университет „Синергия“»</p>
+        </section>
+
+        <section>
+            <h2>Сокращенное название</h2>
+            <p>Университет «Синергия»</p>
+        </section>
+
+        <section>
+            <h2>Организационно-правовая форма</h2>
+            <p>Автономная некоммерческая организация (АНО).</p>
+        </section>
+
+        <section>
+            <h2>Основные виды деятельности</h2>
+            <ul>
+                <li>Высшее образование (бакалавриат, магистратура, аспирантура).</li>
+                <li>Среднее профессиональное образование.</li>
+                <li>Дополнительное профессиональное образование и корпоративные программы.</li>
+                <li>Научные исследования и разработки.</li>
+                <li>Издательская деятельность.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Территориальное размещение</h2>
+            <p>
+                <span class="highlight">Юридический адрес:</span> 129090, г. Москва, ул. Мещанская, д. 9/14, стр. 1.
+            </p>
+            <p>
+                Филиалы и представительства расположены в городах России (Екатеринбург, Иркутск и др.) и за рубежом (Дубай, ОАЭ).
+            </p>
+        </section>
+
+        <footer>
+            &copy; 2024 Университет «Синергия». Все права защищены.
+        </footer>
+    </div>
+
+    <!-- Демонстрация 5 вариантов шрифтов -->
+    <div class="font-demo">
+        <h2 style="color: #333;">Варианты шрифтов для оформления</h2>
+        <p>Ниже представлены 5 альтернатив основному шрифту (Inter):</p>
+        
+        <div class="font-sample" style="font-family: 'Roboto', sans-serif;">
+            1. <strong>Roboto</strong> – универсальный шрифт от Google, очень похож на Inter, но чуть мягче. Идеален для больших объемов текста.
+        </div>
+        
+        <div class="font-sample" style="font-family: 'Open Sans', sans-serif;">
+            2. <strong>Open Sans</strong> – классический, проверенный временем шрифт. Очень высокая читаемость на любых экранах.
+        </div>
+        
+        <div class="font-sample" style="font-family: 'Montserrat', sans-serif;">
+            3. <strong>Montserrat</strong> – геометрический гротеск. Выглядит современно и стильно, хорош для заголовков и акцентов.
+        </div>
+        
+        <div class="font-sample" style="font-family: 'Manrope', sans-serif;">
+            4. <strong>Manrope</strong> – вариативный шрифт, созданный специально для интерфейсов. Чистый, минималистичный, отлично масштабируется.
+        </div>
+        
+        <div class="font-sample" style="font-family: 'Lato', sans-serif;">
+            5. <strong>Lato</strong> – теплый гротеск с гуманистическими пропорциями. Создает ощущение доверия и открытости.
+        </div>
+    </div>
+
+</body>
+</html>
+"""
+
+# Генерация файла
+file_name = "organization_info.html"
+with open(file_name, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Файл '{file_name}' успешно создан!")
