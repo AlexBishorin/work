@@ -1,0 +1,144 @@
+// test_binary_tree.cpp
+#include <gtest/gtest.h>
+#include "binary_tree.h"  // BinaryTree<T> с push(T) (вставка), pop(T) (удаление), search(T) -> bool, empty(), size()
+
+TEST(BinaryTreeTest, PushAndSearchSingleElement) {
+  BinaryTree<int> tree;
+  tree.push(7);
+  ASSERT_FALSE(tree.empty());
+  EXPECT_EQ(tree.size(), 1);
+  EXPECT_TRUE(tree.search(7));
+  EXPECT_FALSE(tree.search(42));
+}
+
+TEST(BinaryTreeTest, InsertMultipleElementsAndSearchAll) {
+  BinaryTree<std::string> tree;
+  tree.push("alpha");
+  tree.push("beta");
+  tree.push("gamma");
+  EXPECT_EQ(tree.size(), 3);
+  EXPECT_TRUE(tree.search("alpha"));
+  EXPECT_TRUE(tree.search("beta"));
+  EXPECT_TRUE(tree.search("gamma"));
+  EXPECT_FALSE(tree.search("delta"));
+}
+
+TEST(BinaryTreeTest, PopExistingElementAndVerifyRemoval) {
+  BinaryTree<int> tree;
+  tree.push(10);
+  tree.push(20);
+  tree.push(30);
+  EXPECT_TRUE(tree.search(20));
+  tree.pop(20);  // удаляем 20
+  EXPECT_FALSE(tree.search(20));
+  EXPECT_EQ(tree.size(), 2);
+  EXPECT_TRUE(tree.search(10));
+  EXPECT_TRUE(tree.search(30));
+}
+
+TEST(BinaryTreeTest, PopNonExistingElementBehavior) {
+  BinaryTree<double> tree;
+  tree.push(1.5);
+  // Удаление несуществующего элемента: поведение зависит от контракта (игнорирование или исключение).
+  // Предполагаем, что pop безопасен и не меняет дерево.
+  tree.pop(99.9);
+  EXPECT_EQ(tree.size(), 1);
+  EXPECT_TRUE(tree.search(1.5));
+}
+
+TEST(BinaryTreeTest, EmptyTreeOperations) {
+  BinaryTree<char> tree;
+  EXPECT_TRUE(tree.empty());
+  EXPECT_EQ(tree.size(), 0);
+  EXPECT_FALSE(tree.search('A'));
+  tree.pop('A');  // безопасно на пустом дереве
+  EXPECT_TRUE(tree.empty());
+}
+
+
+
+// test_heap.cpp
+#include <gtest/gtest.h>
+#include "heap.h"  // объявление Heap<T> с методами push(T), pop() (удаляет максимум/минимум), top(), empty(), size()
+
+TEST(HeapTest, PushAndPopSingleElementMaxHeap) {
+  Heap<int> h;  // предполагаем макс-кучу по умолчанию
+  h.push(10);
+  ASSERT_FALSE(h.empty());
+  EXPECT_EQ(h.top(), 10);
+  EXPECT_EQ(h.size(), 1);
+  h.pop();
+  EXPECT_TRUE(h.empty());
+  EXPECT_EQ(h.size(), 0);
+}
+
+TEST(HeapTest, HeapOrderAfterMultiplePushesAndPops) {
+  Heap<int> h;
+  h.push(5);
+  h.push(20);
+  h.push(3);
+  h.push(15);
+  // Макс-куча: top должен быть наибольшим
+  EXPECT_EQ(h.top(), 20);
+  h.pop();  // удалили 20
+  EXPECT_EQ(h.top(), 15);
+  h.pop();  // удалили 15
+  EXPECT_EQ(h.top(), 5);
+  h.pop();
+  EXPECT_EQ(h.top(), 3);
+  h.pop();
+  EXPECT_TRUE(h.empty());
+}
+
+TEST(HeapTest, PopOnEmptyHeapBehavior) {
+  Heap<double> h;
+  // Аналогично очереди: поведение зависит от контракта. Предполагаем безопасный pop.
+  h.pop();
+  EXPECT_TRUE(h.empty());
+  EXPECT_EQ(h.size(), 0);
+}
+
+
+
+
+
+cpp
+// test_queue.cpp
+#include <gtest/gtest.h>
+#include "queue.h"  // объявление Queue<T> с методами push(T), pop(), front(), empty(), size()
+
+TEST(QueueTest, PushAndPopSingleElement) {
+  Queue<int> q;
+  q.push(42);
+  ASSERT_FALSE(q.empty());
+  EXPECT_EQ(q.front(), 42);
+  EXPECT_EQ(q.size(), 1);
+  q.pop();
+  EXPECT_TRUE(q.empty());
+  EXPECT_EQ(q.size(), 0);
+}
+
+TEST(QueueTest, PushMultipleElementsAndPopInOrder) {
+  Queue<std::string> q;
+  q.push("first");
+  q.push("second");
+  q.push("third");
+  EXPECT_EQ(q.size(), 3);
+  EXPECT_EQ(q.front(), "first");
+  q.pop();
+  EXPECT_EQ(q.front(), "second");
+  q.pop();
+  EXPECT_EQ(q.front(), "third");
+  q.pop();
+  EXPECT_TRUE(q.empty());
+}
+
+TEST(QueueTest, PopOnEmptyQueueBehavior) {
+  Queue<double> q;
+  // Поведение при pop на пустой очереди зависит от контракта класса.
+  // Если класс гарантирует отсутствие падения (например, ничего не делает или выбрасывает исключение),
+  // тест должен проверять именно это. Здесь предполагаем, что pop безопасен и ничего не делает.
+  q.pop();
+  EXPECT_TRUE(q.empty());
+  EXPECT_EQ(q.size(), 0);
+}
